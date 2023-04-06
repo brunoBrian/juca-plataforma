@@ -14,6 +14,8 @@ export const {
     colors: {
       primary: '#fff',
 
+      loginBg: '#f6f6f6',
+
       primary_band: '#FF6D44',
       secondary_band: '#4A57FF',
 

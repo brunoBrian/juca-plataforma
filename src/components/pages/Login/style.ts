@@ -1,7 +1,9 @@
 import { styled } from '@styles/theme';
+import { Container } from 'react-grid-system';
 
-export const Main = styled('header', {
+export const Wrapper = styled('div', {
   height: '100vh',
+  background: '$loginBg',
 
   h2: {
     fontSize: '$large',
@@ -30,14 +32,21 @@ export const LoginContent = styled('div', {
   }
 });
 
-export const Description = styled('header', {
+export const Description = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: 20,
   height: '100%',
   justifyContent: 'center',
+  marginBottom: 60,
 
   h1: {
     fontSize: '$heading'
   }
+});
+
+export const Main = styled('main', {
+  height: 'calc(100% - 138px)',
+  display: 'flex',
+  alignItems: 'center'
 });
