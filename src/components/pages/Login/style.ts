@@ -11,6 +11,16 @@ export const Wrapper = styled('div', {
 
   'h2 a': {
     color: '$primary_band'
+  },
+
+  '.rocket-image-container': {
+    display: 'none'
+  },
+
+  '@lg': {
+    '.rocket-image-container': {
+      display: 'flex'
+    }
   }
 });
 
@@ -48,4 +58,20 @@ export const Main = styled('main', {
   height: 'calc(100% - 138px)',
   display: 'flex',
   alignItems: 'center'
+});
+
+export const Form = styled('form', {
+  marginTop: '$lg',
+
+  '@md': {
+    marginTop: 0
+  },
+
+  a: {
+    display: 'block',
+    fontWeight: '$bold',
+    fontSize: '$small',
+    color: '$medium',
+    margin: '24px 0'
+  }
 });

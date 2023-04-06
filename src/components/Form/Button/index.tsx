@@ -6,6 +6,6 @@ type ButtonProps = {
   children: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({ children }: ButtonProps) {
-  return <S.Wrapper>{children}</S.Wrapper>;
+export function Button({ children, ...props }: ButtonProps) {
+  return <S.Wrapper {...props}>{children}</S.Wrapper>;
 }

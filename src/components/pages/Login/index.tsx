@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Col, Container, Row } from 'react-grid-system';
 import * as S from './style';
-import { Button } from '@components/Form';
+import { Button, Input } from '@components/Form';
 
 export function Login() {
   return (
@@ -27,7 +27,7 @@ export function Login() {
       <S.Main>
         <Container>
           <Row align="center">
-            <Col md={5}>
+            <Col lg={5} md={6}>
               <S.Description>
                 <Image
                   src="/login-logo.png"
@@ -42,9 +42,9 @@ export function Login() {
                 <a href="#"> crie a sua aqui</a>!
               </h2>
             </Col>
-            <Col md={7}>
-              <Row>
-                <Col md={6}>
+            <Col lg={7} md={6}>
+              <Row align="center">
+                <Col lg={6} md={0} className="rocket-image-container">
                   <Image
                     src="/login-rocket.png"
                     alt="Logo do Juca"
@@ -53,23 +53,29 @@ export function Login() {
                     quality={100}
                   />
                 </Col>
-                <Col md={6}>
-                  <form>
-                    <div>
-                      <label htmlFor="username">
-                        Nome de usuário ou e-mail
-                      </label>
-                      <input type="text" name="username" id="username" />
-                    </div>
-                    <div>
-                      <label htmlFor="password">Senha</label>
-                      <input type="text" name="password" id="password" />
-                    </div>
+                <Col md={12} lg={6}>
+                  <S.Form>
+                    <Input
+                      value=""
+                      onChange={() => 'a'}
+                      type="text"
+                      name="username"
+                      placeholder="Nome de usuário ou e-mail"
+                      label="Nome de usuário ou e-mail"
+                    />
+                    <Input
+                      value=""
+                      onChange={() => 'a'}
+                      type="password"
+                      name="password"
+                      placeholder="sua senha"
+                      label="Senha"
+                    />
 
                     <Button>Sign in</Button>
 
-                    <p>Esqueci minha senha</p>
-                  </form>
+                    <a href="#">Esqueci minha senha</a>
+                  </S.Form>
                 </Col>
               </Row>
             </Col>
