@@ -13,7 +13,8 @@ export const globalStyles = globalCss({
   body: {
     backgroundColor: '$primary',
     color: '$strongest',
-    '-webkit-font-smoothing': 'antialiased'
+    '-webkit-font-smoothing': 'antialiased',
+    letterSpacing: '0.04em'
   },
 
   'body, input, textarea, button': {
@@ -24,5 +25,13 @@ export const globalStyles = globalCss({
   button: {
     cursor: 'pointer',
     border: 'none'
+  },
+
+  ul: {
+    listStyle: 'none'
+  },
+
+  a: {
+    textDecoration: 'none'
   }
 });

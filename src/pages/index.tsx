@@ -1,3 +1,4 @@
+import { Login } from '@components/pages';
 import Head from 'next/head';
 
 export default function Home() {
@@ -10,8 +11,7 @@ export default function Home() {
           content="Serviços financeiros sempre perto de você"
         />
       </Head>
-
-      <h1>Olá Juca</h1>
+      <Login />
     </>
   );
 }

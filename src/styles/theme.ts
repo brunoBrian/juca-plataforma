@@ -22,7 +22,7 @@ export const {
       feedback_error: '#D30D48',
 
       strongest: '#13141B',
-      stronge: '#353546',
+      strong: '#353546',
       medium: '#8F8F9A',
       smooth: '#CACED4',
       smoother: '#E7EAEE',
@@ -47,7 +47,8 @@ export const {
       heading_4: '1.25rem', //20px
       heading_3: '1.375rem', //22px
       heading_2: '1.563rem', //25px
-      heading_1: '1.75rem' //28px
+      heading_1: '1.75rem', //28px
+      heading: '2rem' //28px
     },
     fontWeights: {
       light: 300,
