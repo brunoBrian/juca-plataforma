@@ -1755,7 +1755,7 @@ prettier@^2.8.7:
   resolved "https://registry.npmjs.org/prettier/-/prettier-2.8.7.tgz"
   integrity sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==
 
-prop-types@^15.8.1:
+prop-types@15.8.1, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -1781,6 +1781,13 @@ react-dom@18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-grid-system@^8.1.9:
+  version "8.1.9"
+  resolved "https://registry.yarnpkg.com/react-grid-system/-/react-grid-system-8.1.9.tgz#d650695627509824df0efe500dda7b2ea9832ae0"
+  integrity sha512-EdyhAUkc1kJKNZpefIe8UwSJe1JFqKviyv6f2MBFopNYAZDHHYu+zyjQJ7tPJUtcGU1qA47WsCDiN8cSUGtfWA==
+  dependencies:
+    prop-types "15.8.1"
 
 react-is@^16.13.1:
   version "16.13.1"
