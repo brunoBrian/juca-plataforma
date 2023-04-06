@@ -1,4 +1,4 @@
-import { Login } from '@components/pages';
+import { Login } from '@components/index';
 import Head from 'next/head';
 
 export default function Home() {

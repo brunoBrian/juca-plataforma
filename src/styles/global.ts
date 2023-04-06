@@ -24,7 +24,11 @@ export const globalStyles = globalCss({
 
   button: {
     cursor: 'pointer',
-    border: 'none'
+    border: 'none',
+
+    '&:hover': {
+      filter: 'brightness(0.8)'
+    }
   },
 
   ul: {

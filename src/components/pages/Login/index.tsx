@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Col, Container, Row } from 'react-grid-system';
 import * as S from './style';
+import { Button } from '@components/Form';
 
 export function Login() {
   return (
@@ -65,7 +66,7 @@ export function Login() {
                       <input type="text" name="password" id="password" />
                     </div>
 
-                    <button>Sign in</button>
+                    <Button>Sign in</Button>
 
                     <p>Esqueci minha senha</p>
                   </form>
