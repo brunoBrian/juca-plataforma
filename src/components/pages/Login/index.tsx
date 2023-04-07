@@ -1,9 +1,41 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
+
 import * as S from './style';
 import { Button, Input } from '@components/Form';
+import { authLogin } from '@services/Session';
 
 export function Login() {
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const target = event.currentTarget;
+
+    const data = {
+      username: target.username.value,
+      password: target.password.value
+    };
+
+    if (data.username && data.password) {
+      setLoading(true);
+      setError('');
+
+      try {
+        const response = await authLogin(data);
+
+        console.log(response);
+      } catch (err) {
+        setError(err.response.data.error_description);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+
   return (
     <S.Wrapper>
       <S.LoginHeader>
@@ -54,25 +86,23 @@ export function Login() {
                   />
                 </Col>
                 <Col md={12} lg={6}>
-                  <S.Form>
+                  <S.Form onSubmit={handleLogin}>
                     <Input
-                      value=""
-                      onChange={() => 'a'}
                       type="text"
                       name="username"
                       placeholder="Nome de usuário ou e-mail"
                       label="Nome de usuário ou e-mail"
                     />
                     <Input
-                      value=""
-                      onChange={() => 'a'}
                       type="password"
                       name="password"
                       placeholder="sua senha"
                       label="Senha"
                     />
 
-                    <Button>Sign in</Button>
+                    <br />
+                    <Button>{loading ? 'Carregando' : 'Sign in'}</Button>
+                    {error && <span>{error}</span>}
 
                     <a href="#">Esqueci minha senha</a>
                   </S.Form>

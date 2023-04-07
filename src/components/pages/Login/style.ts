@@ -73,5 +73,10 @@ export const Form = styled('form', {
     fontSize: '$small',
     color: '$medium',
     margin: '24px 0'
+  },
+
+  span: {
+    color: '$feedback_error',
+    fontSize: '$small'
   }
 });

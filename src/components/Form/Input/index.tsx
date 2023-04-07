@@ -6,7 +6,7 @@ type InputProps = {
   name: string;
   placeholder?: string;
   label?: string;
-  value: string;
+  value?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Input({
