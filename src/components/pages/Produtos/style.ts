@@ -1,10 +1,11 @@
 import { styled } from '@styles/theme';
+import { Col } from 'react-grid-system';
 
 export const Wrapper = styled('div', {
   height: '100vh'
 });
 
-export const Content = styled('main', {
+export const Content = styled(Col, {
   display: 'grid',
   gridTemplateColumns: '1fr',
   gap: 20,

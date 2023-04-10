@@ -48,7 +48,7 @@ export function Produtos() {
     <S.Wrapper>
       <Container>
         <Row>
-          <S.Content>
+          <S.Content component="main">
             {cards.map(card => (
               <S.Card key={card.text}>
                 <p>image</p>

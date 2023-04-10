@@ -1,4 +1,4 @@
-import { Produtos } from '@components/index';
+import { Header, Produtos } from '@components/index';
 import Head from 'next/head';
 
 export default function ProdutosPage() {
@@ -11,6 +11,7 @@ export default function ProdutosPage() {
           content="Serviços financeiros sempre perto de você"
         />
       </Head>
+      <Header />
       <Produtos />
     </>
   );
