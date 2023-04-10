@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Container, Row } from 'react-grid-system';
 
 import * as S from './style';
-import { Text } from '@components/Text';
+import { Heading, Text } from '@components/index';
 
 const cards = [
   {
@@ -52,9 +52,9 @@ export function Produtos() {
             {cards.map(card => (
               <S.Card key={card.text}>
                 <p>image</p>
-                <Text tag="h4" variant="h4_bold">
+                <Heading tag="h4" variant="h4_bold">
                   {card.title}
-                </Text>
+                </Heading>
                 <Text tag="p" variant="large_bold" color="primary_band">
                   {card.text}
                 </Text>

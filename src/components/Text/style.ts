@@ -1,6 +1,6 @@
 import { styled } from '@styles/theme';
 
-export const Text = styled('h1', {
+export const Text = styled('p', {
   color: '$strong',
   fontSize: '$medium',
   fontWeight: '$regular',
@@ -15,37 +15,11 @@ export const Text = styled('h1', {
       light: {
         fontWeight: '$light'
       },
-      regular: {
-        fontWeight: '$regular'
-      },
       bold: {
         fontWeight: '$bold'
       }
     },
     variant: {
-      h1: {
-        fontSize: '$heading_1'
-      },
-      h2: {
-        fontSize: '$heading_2'
-      },
-      h3: {
-        fontSize: '$heading_3'
-      },
-      h4: {
-        fontSize: '$heading_4'
-      },
-      h4_bold: {
-        fontWeight: 'bold',
-        fontSize: '$heading_4'
-      },
-      h5: {
-        fontSize: '$heading_5'
-      },
-      h5_bold: {
-        fontWeight: 'bold',
-        fontSize: '$heading_5'
-      },
       large: {
         fontWeight: '$light',
         fontSize: '$large'
