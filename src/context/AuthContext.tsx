@@ -25,6 +25,7 @@ type AuthContextType = {
   isAuthenticated: boolean;
   user: User;
   signIn: (data: SignInData) => Promise<void>;
+  signOut: () => Promise<void>;
   requestStatus: RequestStatusType;
 };
 
@@ -48,11 +49,15 @@ export function AuthProvider({ children }) {
           setUser(response);
         })
         .catch(() => {
-          destroyCookie(null, 'juca.accesstoken');
-          Router.push('/');
+          signOut();
         });
     }
   }, []);
+
+  async function signOut() {
+    destroyCookie(null, 'juca.accesstoken');
+    Router.push('/');
+  }
 
   async function signIn({ username, password }: SignInData) {
     try {
@@ -82,7 +87,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, signIn, requestStatus }}
+      value={{ user, isAuthenticated, signIn, requestStatus, signOut }}
     >
       {children}
     </AuthContext.Provider>

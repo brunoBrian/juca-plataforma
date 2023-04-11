@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { Col, Container } from 'react-grid-system';
 
 import * as S from './style';
+import { useContext } from 'react';
+import { AuthContext } from 'context/AuthContext';
 
 export function Header() {
-  const router = useRouter();
+  const { signOut } = useContext(AuthContext);
 
   function handleLogout() {
-    router.push('/');
+    signOut();
   }
 
   return (

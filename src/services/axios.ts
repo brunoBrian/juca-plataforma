@@ -2,6 +2,7 @@ import axios from 'axios';
 import { parseCookies } from 'nookies';
 
 // to get cookie on server side
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getApiClient(ctx?: any) {
   const { 'juca.accesstoken': token } = parseCookies(ctx);
 
