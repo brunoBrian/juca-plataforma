@@ -45,7 +45,7 @@ const cards = [
 
 export function Produtos() {
   return (
-    <S.Wrapper>
+    <div>
       <Container>
         <Row>
           <S.Content component="main">
@@ -68,6 +68,6 @@ export function Produtos() {
           </S.Content>
         </Row>
       </Container>
-    </S.Wrapper>
+    </div>
   );
 }

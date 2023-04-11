@@ -1,9 +1,9 @@
+import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Col, Container } from 'react-grid-system';
 
 import * as S from './style';
-import { useContext } from 'react';
 import { AuthContext } from 'context/AuthContext';
 
 export function Header() {

@@ -2,10 +2,6 @@ import { styled } from '@styles/theme';
 import Link from 'next/link';
 import { Col } from 'react-grid-system';
 
-export const Wrapper = styled('div', {
-  minHeight: 'calc(100vh - 189px)'
-});
-
 export const Content = styled(Col, {
   display: 'grid',
   gridTemplateColumns: '1fr',

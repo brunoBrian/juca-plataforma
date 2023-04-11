@@ -1,8 +1,9 @@
-import { Produtos } from '@components/index';
-import Layout from '@components/layout';
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { parseCookies } from 'nookies';
+import { GetServerSideProps } from 'next';
+
+import { Produtos } from '@components/index';
+import { Layout } from '@components/Layout/Layout/layout';
 
 export default function ProdutosPage() {
   return (
