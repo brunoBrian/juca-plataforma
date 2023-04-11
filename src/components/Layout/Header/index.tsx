@@ -1,4 +1,4 @@
-import { Col, Container, Row } from 'react-grid-system';
+import { Col, Container } from 'react-grid-system';
 import * as S from './style';
 import Image from 'next/image';
 import Link from 'next/link';

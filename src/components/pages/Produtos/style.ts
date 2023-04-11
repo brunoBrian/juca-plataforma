@@ -1,8 +1,9 @@
 import { styled } from '@styles/theme';
+import Link from 'next/link';
 import { Col } from 'react-grid-system';
 
 export const Wrapper = styled('div', {
-  height: '100vh'
+  minHeight: 'calc(100vh - 201px)'
 });
 
 export const Content = styled(Col, {
@@ -20,7 +21,8 @@ export const Content = styled(Col, {
   }
 });
 
-export const Card = styled('div', {
+export const Card = styled(Link, {
+  textDecoration: 'none',
   background: '$smoother',
   width: '100%',
   borderRadius: '$small',

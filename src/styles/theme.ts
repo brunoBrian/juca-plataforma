@@ -25,7 +25,7 @@ export const {
 
       strongest: '#13141B',
       strong: '#353546',
-      medium: '#8F8F9A',
+      strong_medium: '#8F8F9A',
       smooth: '#CACED4',
       smoother: '#E7EAEE',
       smoothest: '#FFFFFF'

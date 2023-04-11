@@ -6,37 +6,37 @@ import { Heading, Text } from '@components/index';
 
 const cards = [
   {
-    image: '#',
+    image: '/pagar-boleto.png',
     link: '#',
     title: 'Pagar contas e boletos',
     text: 'Pagar'
   },
   {
-    image: '#',
+    image: '/emprestimo.png',
     link: '#',
     title: 'Empréstimo',
     text: 'Solicitar'
   },
   {
-    image: '#',
+    image: '/megasena.png',
     link: '#',
     title: 'TeleSena',
     text: 'Jogar'
   },
   {
-    image: '#',
+    image: '/vale-presente.png',
     link: '#',
     title: 'Vale presentes e Gifts cards',
     text: 'Comprar'
   },
   {
-    image: '#',
+    image: '/recarga-celular.png',
     link: '#',
     title: 'Recarga de celular',
     text: 'Recarregar'
   },
   {
-    image: '#',
+    image: '/megasena.png',
     link: '#',
     title: 'Mega Sena',
     text: 'Jogar'
@@ -50,9 +50,14 @@ export function Produtos() {
         <Row>
           <S.Content component="main">
             {cards.map(card => (
-              <S.Card key={card.text}>
-                <p>image</p>
-                <Heading tag="h4" variant="h4_bold">
+              <S.Card key={card.text} href={card.link}>
+                <Image
+                  src={card.image}
+                  width={80}
+                  height={80}
+                  alt={card.text}
+                />
+                <Heading tag="h4" variant="h4_bold" color="strongest">
                   {card.title}
                 </Heading>
                 <Text tag="p" variant="large_bold" color="primary_band">

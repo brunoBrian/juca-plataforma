@@ -1,4 +1,4 @@
-import { Header, Produtos } from '@components/index';
+import { Footer, Header, Produtos } from '@components/index';
 import Head from 'next/head';
 
 export default function ProdutosPage() {
@@ -13,6 +13,7 @@ export default function ProdutosPage() {
       </Head>
       <Header />
       <Produtos />
+      <Footer />
     </>
   );
 }
