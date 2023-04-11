@@ -1,18 +1,13 @@
 import Image from 'next/image';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useContext } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
 
 import * as S from './style';
 import { Button, Input } from '@components/Form';
-import { authLogin } from '@services/Session';
-import { setStoreData } from '@utils/localStorage';
-import { AuthData } from '@services/Session/types';
+import { AuthContext } from 'context/AuthContext';
 
 export function Login() {
-  const router = useRouter();
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const { signIn, requestStatus } = useContext(AuthContext);
 
   async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,22 +20,10 @@ export function Login() {
     };
 
     if (body.username && body.password) {
-      setLoading(true);
-      setError('');
-
-      try {
-        const { access_token, refresh_token } = await authLogin(body);
-
-        setStoreData<AuthData>('USER_DATA', {
-          access_token,
-          refresh_token
-        });
-        router.push('/produtos');
-      } catch (err) {
-        setError(err.response.data.error_description);
-      } finally {
-        setLoading(false);
-      }
+      await signIn({
+        username: body.username,
+        password: body.password
+      });
     }
   }
 
@@ -109,8 +92,10 @@ export function Login() {
                     />
 
                     <br />
-                    <Button>{loading ? 'Carregando' : 'Sign in'}</Button>
-                    {error && <span>{error}</span>}
+                    <Button>
+                      {requestStatus.loading ? 'Carregando' : 'Sign in'}
+                    </Button>
+                    {requestStatus.error && <span>{requestStatus.error}</span>}
 
                     <a href="#">Esqueci minha senha</a>
                   </S.Form>

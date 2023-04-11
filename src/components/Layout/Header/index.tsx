@@ -4,13 +4,11 @@ import { useRouter } from 'next/router';
 import { Col, Container } from 'react-grid-system';
 
 import * as S from './style';
-import { removeSessionStorage } from '@utils/localStorage';
 
 export function Header() {
   const router = useRouter();
 
   function handleLogout() {
-    removeSessionStorage();
     router.push('/');
   }
 

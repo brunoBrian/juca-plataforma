@@ -2,7 +2,7 @@ import { api } from '@services/api';
 import endpoints from './endpoints.json';
 import * as types from './types';
 
-export async function authLogin({ username, password }) {
+export async function signInRequest({ username, password }) {
   const url = endpoints.authToken;
 
   const data = {
@@ -14,6 +14,14 @@ export async function authLogin({ username, password }) {
   };
 
   const result = await api.post<types.AuthData>(url, data);
+
+  return result.data;
+}
+
+export async function getUserInfo() {
+  const url = endpoints.userInfo;
+
+  const result = await api.get<types.UserInfo>(url);
 
   return result.data;
 }

@@ -1,6 +1,8 @@
 import { Produtos } from '@components/index';
 import Layout from '@components/layout';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { parseCookies } from 'nookies';
 
 export default function ProdutosPage() {
   return (
@@ -18,3 +20,20 @@ export default function ProdutosPage() {
 }
 
 ProdutosPage.layout = Layout;
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { ['juca.accesstoken']: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    };
+  }
+
+  return {
+    props: {}
+  };
+};

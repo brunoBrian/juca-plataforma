@@ -1,0 +1,4 @@
+{
+  "authToken": "/auth/realms/PlataformaVemProjuca/protocol/openid-connect/token",
+  "userInfo": "/auth/realms/PlataformaVemProJuca/protocol/openid-connect/userinfo"
+}
