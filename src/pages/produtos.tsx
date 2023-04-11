@@ -1,4 +1,5 @@
-import { Footer, Header, Produtos } from '@components/index';
+import { Produtos } from '@components/index';
+import Layout from '@components/layout';
 import Head from 'next/head';
 
 export default function ProdutosPage() {
@@ -11,9 +12,9 @@ export default function ProdutosPage() {
           content="Serviços financeiros sempre perto de você"
         />
       </Head>
-      <Header />
       <Produtos />
-      <Footer />
     </>
   );
 }
+
+ProdutosPage.layout = Layout;
