@@ -47,6 +47,11 @@ export function Produtos() {
   return (
     <div>
       <Container>
+        <S.Header>
+          <Heading tag="h1" variant="h1">
+            Selecione um produto para vender
+          </Heading>
+        </S.Header>
         <Row>
           <S.Content component="main">
             {cards.map(card => (

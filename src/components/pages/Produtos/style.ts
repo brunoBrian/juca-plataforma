@@ -31,3 +31,7 @@ export const Card = styled(Link, {
   padding: 12,
   textAlign: 'center'
 });
+
+export const Header = styled('div', {
+  marginBottom: '$md'
+});
