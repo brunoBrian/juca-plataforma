@@ -14,9 +14,10 @@ export const Nav = styled('nav', {
   display: 'flex',
   justifyContent: 'end',
 
-  a: {
+  strong: {
     fontWeight: '$bold',
     color: '$strongest',
-    fontSize: '$large'
+    fontSize: '$large',
+    cursor: 'pointer'
   }
 });

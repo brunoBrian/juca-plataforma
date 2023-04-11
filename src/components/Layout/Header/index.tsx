@@ -1,9 +1,19 @@
-import { Col, Container } from 'react-grid-system';
-import * as S from './style';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Col, Container } from 'react-grid-system';
+
+import * as S from './style';
+import { removeSessionStorage } from '@utils/localStorage';
 
 export function Header() {
+  const router = useRouter();
+
+  function handleLogout() {
+    removeSessionStorage();
+    router.push('/');
+  }
+
   return (
     <S.Wrapper>
       <Container>
@@ -20,7 +30,7 @@ export function Header() {
           </Col>
           <Col sm={9}>
             <S.Nav>
-              <a href="#">Sair</a>
+              <strong onClick={handleLogout}>Sair</strong>
             </S.Nav>
           </Col>
         </S.Content>

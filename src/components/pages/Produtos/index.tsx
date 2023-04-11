@@ -50,7 +50,7 @@ export function Produtos() {
         <Row>
           <S.Content component="main">
             {cards.map(card => (
-              <S.Card key={card.text} href={card.link}>
+              <S.Card key={card.title} href={card.link}>
                 <Image
                   src={card.image}
                   width={80}

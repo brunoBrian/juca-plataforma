@@ -1,5 +1,6 @@
 import { api } from '@services/api';
 import endpoints from './endpoints.json';
+import * as types from './types';
 
 export async function authLogin({ username, password }) {
   const url = endpoints.authToken;
@@ -12,7 +13,7 @@ export async function authLogin({ username, password }) {
     password
   };
 
-  const result = await api.post(url, data);
+  const result = await api.post<types.AuthData>(url, data);
 
   return result.data;
 }

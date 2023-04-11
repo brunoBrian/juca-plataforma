@@ -1,12 +1,16 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Col, Container, Row } from 'react-grid-system';
 
 import * as S from './style';
 import { Button, Input } from '@components/Form';
 import { authLogin } from '@services/Session';
+import { setStoreData } from '@utils/localStorage';
+import { AuthData } from '@services/Session/types';
 
 export function Login() {
+  const router = useRouter();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -15,19 +19,23 @@ export function Login() {
 
     const target = event.currentTarget;
 
-    const data = {
+    const body = {
       username: target.username.value,
       password: target.password.value
     };
 
-    if (data.username && data.password) {
+    if (body.username && body.password) {
       setLoading(true);
       setError('');
 
       try {
-        const response = await authLogin(data);
+        const { access_token, refresh_token } = await authLogin(body);
 
-        console.log(response);
+        setStoreData<AuthData>('USER_DATA', {
+          access_token,
+          refresh_token
+        });
+        router.push('/produtos');
       } catch (err) {
         setError(err.response.data.error_description);
       } finally {
