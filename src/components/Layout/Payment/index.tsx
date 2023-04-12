@@ -1,11 +1,12 @@
+import Image from 'next/image';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { Col, Row } from 'react-grid-system';
 
 import * as S from './style';
 import { BasicStructure } from '../BasicStructure';
 import { Text } from '@components/Typography';
-import Image from 'next/image';
-import { PaymentPix } from './PaymentMethods';
+import { GenericMethods, PaymentPix } from './components/PaymentMethods';
+import { BoxBackground } from './components/BoxBackground';
 
 type PaymentTypeName = 'pix' | 'credito' | 'debito' | 'dinheiro';
 
@@ -47,9 +48,9 @@ export function Payment({ children }: PaymentProps) {
   const paymentTypeSteps = useMemo(
     () => [
       <PaymentPix key={0} qrcodeUrl="/assets/qrcode.png" />,
-      <h1 key={1}>Segundo</h1>,
-      <h1 key={2}>Terceiro</h1>,
-      <h1 key={3}>Quarto</h1>
+      <GenericMethods key={1}>Segundo</GenericMethods>,
+      <GenericMethods key={2}>Terceiro</GenericMethods>,
+      <GenericMethods key={3}>Quarto</GenericMethods>
     ],
     []
   );
@@ -73,8 +74,8 @@ export function Payment({ children }: PaymentProps) {
   return (
     <BasicStructure title="Resumo do pagamento">
       <Row>
-        <Col md={6}>
-          <S.PaymentInfo>{children}</S.PaymentInfo>
+        <Col md={5}>
+          <BoxBackground>{children}</BoxBackground>
         </Col>
         <Col md={3}>
           <S.PaymentType>
@@ -98,11 +99,7 @@ export function Payment({ children }: PaymentProps) {
             ))}
           </S.PaymentType>
         </Col>
-        <Col md={3}>
-          <S.PaymentTypeInfo>
-            {getPaymentTypeInfoComponent(activeType)}
-          </S.PaymentTypeInfo>
-        </Col>
+        <Col md={4}>{getPaymentTypeInfoComponent(activeType)}</Col>
       </Row>
     </BasicStructure>
   );

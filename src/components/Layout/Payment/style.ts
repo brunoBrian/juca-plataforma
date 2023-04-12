@@ -1,11 +1,5 @@
 import { styled } from '@styles/theme';
 
-export const PaymentInfo = styled('div', {
-  background: '$smoother',
-  borderRadius: '$small',
-  padding: '$tiny'
-});
-
 export const PaymentType = styled('div', {
   borderRadius: '$small',
   background: '$smoother',
@@ -57,5 +51,3 @@ export const PaymentTypeTitle = styled('div', {
     backgroundColor: '$secondary_band'
   }
 });
-
-export const PaymentTypeInfo = styled('div', {});
