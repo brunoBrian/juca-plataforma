@@ -1,27 +1,25 @@
 import { ReactNode } from 'react';
-import { Footer, Header } from '../';
+import { Container } from 'react-grid-system';
 
-import * as S from './style';
 import { Heading } from '@components/Typography';
+import * as S from './style';
 
-type LayoutProps = {
+type BasicStructureProps = {
   children: ReactNode;
   title: string;
 };
 
-export function Layout({ children, title }: LayoutProps) {
+export function BasicStructure({ children, title }: BasicStructureProps) {
   return (
-    <>
-      <Header />
-      <S.Wrapper>
+    <div>
+      <Container>
         <S.Header>
           <Heading tag="h1" variant="h1">
             {title}
           </Heading>
         </S.Header>
         {children}
-      </S.Wrapper>
-      <Footer />
-    </>
+      </Container>
+    </div>
   );
 }

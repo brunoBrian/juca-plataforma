@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { Container, Row } from 'react-grid-system';
+import { Row } from 'react-grid-system';
 
 import * as S from './style';
-import { Heading, Text } from '@components/index';
+import { BasicStructure, Heading, Text } from '@components/index';
 
 const cards = [
   {
@@ -31,7 +31,7 @@ const cards = [
   },
   {
     image: '/recarga-celular.png',
-    link: '#',
+    link: 'recarga-celular',
     title: 'Recarga de celular',
     text: 'Recarregar'
   },
@@ -45,34 +45,22 @@ const cards = [
 
 export function Produtos() {
   return (
-    <div>
-      <Container>
-        <S.Header>
-          <Heading tag="h1" variant="h1">
-            Selecione um produto para vender
-          </Heading>
-        </S.Header>
-        <Row>
-          <S.Content component="main">
-            {cards.map(card => (
-              <S.Card key={card.title} href={card.link}>
-                <Image
-                  src={card.image}
-                  width={80}
-                  height={80}
-                  alt={card.text}
-                />
-                <Heading tag="h4" variant="h4_bold" color="strongest">
-                  {card.title}
-                </Heading>
-                <Text tag="p" variant="large_bold" color="primary_band">
-                  {card.text}
-                </Text>
-              </S.Card>
-            ))}
-          </S.Content>
-        </Row>
-      </Container>
-    </div>
+    <BasicStructure title="Selecione um produto para vender">
+      <Row>
+        <S.Content component="main">
+          {cards.map(card => (
+            <S.Card key={card.title} href={card.link}>
+              <Image src={card.image} width={80} height={80} alt={card.text} />
+              <Heading tag="h4" variant="h4_bold" color="strongest">
+                {card.title}
+              </Heading>
+              <Text tag="p" variant="large_bold" color="primary_band">
+                {card.text}
+              </Text>
+            </S.Card>
+          ))}
+        </S.Content>
+      </Row>
+    </BasicStructure>
   );
 }

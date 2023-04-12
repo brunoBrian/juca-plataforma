@@ -69,7 +69,7 @@ export function AuthProvider({ children }) {
       });
 
       setCookie(undefined, 'juca.accesstoken', access_token, {
-        maxAge: 60 * 60 * 1 // 1 hour
+        maxAge: 60 * 60 * 60 * 1 // 1 day
       });
 
       api.defaults.headers['Authorization'] = `Bearer ${access_token}`;
