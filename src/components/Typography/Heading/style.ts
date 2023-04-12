@@ -43,6 +43,17 @@ export const Heading = styled('h1', {
         fontWeight: 'bold',
         fontSize: '$heading_5'
       }
+    },
+    align: {
+      center: {
+        textAlign: 'center'
+      },
+      left: {
+        textAlign: 'left'
+      },
+      right: {
+        textAlign: 'right'
+      }
     }
   }
 });

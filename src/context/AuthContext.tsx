@@ -75,6 +75,7 @@ export function AuthProvider({ children }) {
       api.defaults.headers['Authorization'] = `Bearer ${access_token}`;
 
       setUser(user);
+      setRequestStatus(() => ({ error: null, loading: false }));
 
       Router.push('/produtos');
     } catch (err) {
