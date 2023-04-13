@@ -48,9 +48,9 @@ export function Payment({ children }: PaymentProps) {
   const paymentTypeSteps = useMemo(
     () => [
       <PaymentPix key={0} qrcodeUrl="/assets/qrcode.png" />,
-      <GenericMethods key={1}>Segundo</GenericMethods>,
-      <GenericMethods key={2}>Terceiro</GenericMethods>,
-      <GenericMethods key={3}>Quarto</GenericMethods>
+      <GenericMethods key={1} />,
+      <GenericMethods key={2} hideInstallments />,
+      <GenericMethods key={3} hideInstallments />
     ],
     []
   );
