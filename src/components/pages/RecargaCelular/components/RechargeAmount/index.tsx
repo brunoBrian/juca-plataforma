@@ -59,12 +59,6 @@ export function RechargeAmount({ nextStep, prevStep }: RechargeAmountProps) {
               ))}
             </S.CardContainer>
 
-            <Input
-              name="amount"
-              label="Digite o valor que o cliente deseja"
-              placeholder="R$ 0,00"
-            />
-
             <S.Buttons>
               <Button variant="basic" onClick={prevStep}>
                 Voltar

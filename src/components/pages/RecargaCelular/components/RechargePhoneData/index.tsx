@@ -1,5 +1,7 @@
 import { Col, Row } from 'react-grid-system';
-//import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as S from './style';
 import { BasicStructure, Button, Input } from '@components/index';
@@ -9,34 +11,62 @@ type RechargePhoneDataProps = {
   prevStep: () => void;
 };
 
+const setPhoneFormSchema = z
+  .object({
+    phone: z
+      .string({
+        required_error: 'Preencha o número de telefone'
+      })
+      .min(10, { message: 'Preencha o número de telefone corretamente' }),
+    confirmedPhone: z.string({
+      required_error: 'Confirme o número de telefone'
+    })
+  })
+  .refine(data => data.confirmedPhone === data.phone, {
+    message: 'Os telefones precisam ser iguais',
+    path: ['confirmedPhone']
+  });
+
+type setPhoneFormData = z.infer<typeof setPhoneFormSchema>;
+
 export function RechargePhoneData({
   nextStep,
   prevStep
 }: RechargePhoneDataProps) {
-  //const [rechargeAmount, setRechargeAmount] = useState(500);
+  const methods = useForm<setPhoneFormData>({
+    resolver: zodResolver(setPhoneFormSchema)
+  });
+
+  function handleSetPhone(data: setPhoneFormData) {
+    console.log(data);
+    nextStep();
+  }
 
   return (
     <BasicStructure title="Recarga de celular" isForm>
       <Row>
         <Col sm={12}>
-          <Input
-            name="phone"
-            label="Insira o número de telefone com DDD"
-            placeholder="00 000000000"
-          />
+          <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(handleSetPhone)}>
+              <Input
+                name="phone"
+                label="Insira o número de telefone com DDD"
+                placeholder="00 000000000"
+              />
+              <Input
+                name="confirmedPhone"
+                label="Confirme o número de telefone com DDD"
+                placeholder="00 000000000"
+              />
 
-          <Input
-            name="confirmed-phone"
-            label="Confirme o número de telefone com DDD"
-            placeholder="00 000000000"
-          />
-
-          <S.Buttons>
-            <Button variant="basic" onClick={prevStep}>
-              Voltar
-            </Button>
-            <Button onClick={nextStep}>Próximo passo</Button>
-          </S.Buttons>
+              <S.Buttons>
+                <Button variant="basic" onClick={prevStep}>
+                  Voltar
+                </Button>
+                <Button>Próximo passo</Button>
+              </S.Buttons>
+            </form>
+          </FormProvider>
         </Col>
       </Row>
     </BasicStructure>

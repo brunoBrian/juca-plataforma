@@ -1,30 +1,37 @@
 import Image from 'next/image';
 import { useContext } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
+import { FormProvider, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as S from './style';
 import { Button, Input } from '@components/Form';
 import { AuthContext } from 'context/AuthContext';
 
+const loginFormSchema = z.object({
+  username: z.string().min(1, {
+    message: 'Informe seu nome de usuário ou e-mail'
+  }),
+  password: z.string().min(1, {
+    message: 'Informe sua senha'
+  })
+});
+
+type loginFormData = z.infer<typeof loginFormSchema>;
+
 export function Login() {
   const { signIn, requestStatus } = useContext(AuthContext);
 
-  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const methods = useForm<loginFormData>({
+    resolver: zodResolver(loginFormSchema)
+  });
 
-    const target = event.currentTarget;
-
-    const body = {
-      username: target.username.value,
-      password: target.password.value
-    };
-
-    if (body.username && body.password) {
-      await signIn({
-        username: body.username,
-        password: body.password
-      });
-    }
+  async function handleLogin({ password, username }: loginFormData) {
+    await signIn({
+      password,
+      username
+    });
   }
 
   return (
@@ -77,28 +84,31 @@ export function Login() {
                   />
                 </Col>
                 <Col md={12} lg={6}>
-                  <S.Form onSubmit={handleLogin}>
-                    <Input
-                      type="text"
-                      name="username"
-                      placeholder="Nome de usuário ou e-mail"
-                      label="Nome de usuário ou e-mail"
-                    />
-                    <Input
-                      type="password"
-                      name="password"
-                      placeholder="sua senha"
-                      label="Senha"
-                    />
+                  <FormProvider {...methods}>
+                    <S.Form onSubmit={methods.handleSubmit(handleLogin)}>
+                      <Input
+                        name={'username'}
+                        placeholder="Nome de usuário ou e-mail"
+                        label="Nome de usuário ou e-mail"
+                      />
+                      <Input
+                        name="password"
+                        type="password"
+                        placeholder="sua senha"
+                        label="Senha"
+                      />
 
-                    <br />
-                    <Button>
-                      {requestStatus.loading ? 'Carregando' : 'Sign in'}
-                    </Button>
-                    {requestStatus.error && <span>{requestStatus.error}</span>}
+                      <br />
+                      <Button>
+                        {requestStatus.loading ? 'Carregando' : 'Sign in'}
+                      </Button>
+                      {requestStatus.error && (
+                        <span>{requestStatus.error}</span>
+                      )}
 
-                    <a href="#">Esqueci minha senha</a>
-                  </S.Form>
+                      <a href="#">Esqueci minha senha</a>
+                    </S.Form>
+                  </FormProvider>
                 </Col>
               </Row>
             </Col>
