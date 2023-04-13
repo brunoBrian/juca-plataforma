@@ -5,8 +5,8 @@ import { Col, Row } from 'react-grid-system';
 import * as S from './style';
 import { BasicStructure } from '../BasicStructure';
 import { Text } from '@components/Typography';
-import { GenericMethods, PaymentPix } from './components/PaymentMethods';
-import { BoxBackground } from './components/BoxBackground';
+import { GenericMethods, PaymentPix } from './components';
+import { BoxBackground } from './components';
 
 type PaymentTypeName = 'pix' | 'credito' | 'debito' | 'dinheiro';
 

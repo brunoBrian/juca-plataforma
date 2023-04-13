@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 
 import { Payment } from '@components/index';
 import { Layout } from '@components/Layout/Layout/layout';
+import { PaymentPaymentInfoLabelText } from '@components/Layout/Payment/components';
 
 export default function RecargaCelular() {
   return (
@@ -15,7 +16,17 @@ export default function RecargaCelular() {
           content="Serviços financeiros sempre perto de você"
         />
       </Head>
-      <Payment />
+      <Payment>
+        <PaymentPaymentInfoLabelText
+          label="Nome/Razão social:"
+          description="Claro Net Telecomunicações S.A"
+        />
+        <PaymentPaymentInfoLabelText
+          label="Valor da recarga:"
+          description="R$ 00,00"
+          descriptionBig
+        />
+      </Payment>
     </>
   );
 }
