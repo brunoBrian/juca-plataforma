@@ -1,10 +1,22 @@
 import { styled } from '@styles/theme';
 
+export const PaymentData = styled('div', {
+  marginBottom: '$md',
+
+  '@lg': {
+    marginBottom: '0'
+  }
+});
 export const PaymentType = styled('div', {
   borderRadius: '$small',
   background: '$smoother',
   border: '1px solid',
-  borderColor: '$smoother'
+  borderColor: '$smoother',
+  marginBottom: '$md',
+
+  '@md': {
+    marginBottom: '0'
+  }
 });
 
 export const PaymentTypeContainer = styled('div', {

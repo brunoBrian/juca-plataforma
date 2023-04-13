@@ -74,10 +74,12 @@ export function Payment({ children }: PaymentProps) {
   return (
     <BasicStructure title="Resumo do pagamento">
       <Row>
-        <Col md={5}>
-          <BoxBackground>{children}</BoxBackground>
+        <Col lg={5} md={12}>
+          <S.PaymentData>
+            <BoxBackground>{children}</BoxBackground>
+          </S.PaymentData>
         </Col>
-        <Col md={3}>
+        <Col lg={3} md={6}>
           <S.PaymentType>
             {paymentType.map((type, index) => (
               <S.PaymentTypeContainer
@@ -99,7 +101,9 @@ export function Payment({ children }: PaymentProps) {
             ))}
           </S.PaymentType>
         </Col>
-        <Col md={4}>{getPaymentTypeInfoComponent(activeType)}</Col>
+        <Col lg={4} md={6}>
+          {getPaymentTypeInfoComponent(activeType)}
+        </Col>
       </Row>
     </BasicStructure>
   );
