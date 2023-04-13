@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Container } from 'react-grid-system';
 
 import { Heading } from '@components/Typography';
 import * as S from './style';
@@ -7,19 +6,24 @@ import * as S from './style';
 type BasicStructureProps = {
   children: ReactNode;
   title: string;
+  align?: 'center' | 'left' | 'right';
+  isForm?: boolean;
 };
 
-export function BasicStructure({ children, title }: BasicStructureProps) {
+export function BasicStructure({
+  children,
+  title,
+  align = 'left',
+  isForm
+}: BasicStructureProps) {
   return (
-    <div>
-      <Container>
-        <S.Header>
-          <Heading tag="h1" variant="h1">
-            {title}
-          </Heading>
-        </S.Header>
-        {children}
-      </Container>
-    </div>
+    <S.Content small={isForm}>
+      <S.Header>
+        <Heading tag="h1" variant="h1" align={align}>
+          {title}
+        </Heading>
+      </S.Header>
+      {children}
+    </S.Content>
   );
 }

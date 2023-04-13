@@ -7,5 +7,15 @@ export const Wrapper = styled('button', {
   width: '100%',
   color: '$smoothest',
   fontWeight: '$medium',
-  fontSize: '$large'
+  fontSize: '$large',
+
+  variants: {
+    variant: {
+      basic: {
+        color: '$primary_band',
+        background: '$smoothest',
+        border: '2px solid'
+      }
+    }
+  }
 });
