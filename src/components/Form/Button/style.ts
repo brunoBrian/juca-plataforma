@@ -2,7 +2,7 @@ import { styled } from '@styles/theme';
 
 export const Wrapper = styled('button', {
   background: '$primary_band',
-  padding: '10px',
+  padding: 10,
   borderRadius: '$small',
   width: '100%',
   color: '$smoothest',
@@ -15,6 +15,14 @@ export const Wrapper = styled('button', {
         color: '$primary_band',
         background: '$smoothest',
         border: '2px solid'
+      }
+    },
+    size: {
+      sm: {
+        '@md': {
+          width: 'auto',
+          padding: '10px 50px'
+        }
       }
     }
   }

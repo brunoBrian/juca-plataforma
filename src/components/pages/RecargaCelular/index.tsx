@@ -28,7 +28,7 @@ export function RecargaCelular() {
       nextStep={handleNextStep}
       prevStep={handlePreviousStep}
     />,
-    <Payment key={2}>
+    <Payment key={2} handleBackButtonAction={handlePreviousStep}>
       <PaymentPaymentInfoLabelText
         label="Nome/Razão social:"
         description="Claro Net Telecomunicações S.A"

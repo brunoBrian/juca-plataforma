@@ -7,6 +7,7 @@ import { BasicStructure } from '../BasicStructure';
 import { Text } from '@components/Typography';
 import { GenericMethods, PaymentPix } from './components';
 import { BoxBackground } from './components';
+import { Button } from '@components/Form';
 
 type PaymentTypeName = 'pix' | 'credito' | 'debito' | 'dinheiro';
 
@@ -18,9 +19,10 @@ type PaymentType = {
 
 type PaymentProps = {
   children: ReactNode;
+  handleBackButtonAction: () => void;
 };
 
-export function Payment({ children }: PaymentProps) {
+export function Payment({ children, handleBackButtonAction }: PaymentProps) {
   const [activeType, setActiveType] = useState(0);
   const [paymentType, setPaymentType] = useState<PaymentType[]>([
     {
@@ -103,6 +105,12 @@ export function Payment({ children }: PaymentProps) {
         </Col>
         <Col lg={4} md={6}>
           {getPaymentTypeInfoComponent(activeType)}
+
+          <S.BackButton>
+            <Button size="sm" variant="basic" onClick={handleBackButtonAction}>
+              Voltar
+            </Button>
+          </S.BackButton>
         </Col>
       </Row>
     </BasicStructure>

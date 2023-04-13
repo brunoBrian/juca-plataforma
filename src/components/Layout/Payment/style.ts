@@ -63,3 +63,14 @@ export const PaymentTypeTitle = styled('div', {
     backgroundColor: '$secondary_band'
   }
 });
+
+export const BackButton = styled('div', {
+  display: 'flex',
+  alignItems: 'end',
+  justifyContent: 'end',
+  height: 100,
+
+  '@md': {
+    height: 200
+  }
+});
