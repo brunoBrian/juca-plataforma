@@ -52,11 +52,13 @@ export function RechargePhoneData({
                 name="phone"
                 label="Insira o número de telefone com DDD"
                 placeholder="00 000000000"
+                mask="(00) 00000-0000"
               />
               <Input
                 name="confirmedPhone"
                 label="Confirme o número de telefone com DDD"
                 placeholder="00 000000000"
+                mask="(00) 00000-0000"
               />
 
               <S.Buttons>
