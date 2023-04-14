@@ -1,7 +1,8 @@
-import { globalStyles } from '@styles/global';
-import { AuthProvider } from 'context/AuthContext';
 import React from 'react';
 import { setConfiguration } from 'react-grid-system';
+
+import { globalStyles } from '@styles/global';
+import { AuthProvider } from 'context';
 
 globalStyles();
 setConfiguration({ gutterWidth: 16, maxScreenClass: 'xl' });

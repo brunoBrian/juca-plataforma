@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Col, Container } from 'react-grid-system';
 
 import * as S from './style';
-import { AuthContext } from 'context/AuthContext';
+import { AuthContext } from 'context';
 
 export function Header() {
   const { signOut } = useContext(AuthContext);

@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 
 import { PaymentPaymentInfoLabelText } from '@components/Layout/Payment/components';
 import { Payment } from '@components/Layout';
-import { RechargeAmount, RechargePhoneData } from './components';
+import { RechargeAmount, RechargePhoneData } from './components/';
+import { RecargaCelularProvider } from 'context';
 
 export function RecargaCelular() {
   const [step, setStep] = useState(0);
@@ -41,5 +42,7 @@ export function RecargaCelular() {
     </Payment>
   ];
 
-  return <>{stepComponents[step]}</>;
+  return (
+    <RecargaCelularProvider>{stepComponents[step]}</RecargaCelularProvider>
+  );
 }

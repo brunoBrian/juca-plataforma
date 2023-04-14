@@ -1,44 +1,37 @@
 import { Col, Row } from 'react-grid-system';
 import { FormProvider, useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as S from './style';
-import { BasicStructure, Button, Input } from '@components/index';
+import { Button, Input } from '@components/index';
+import { BasicStructure } from '@components/Layout';
+import { setPhoneFormDataType, setPhoneFormSchema } from './zodValidation';
+import { useRecargaCelular } from 'context';
+import { formatPhoneWithDDD } from '@utils/formats';
 
 type RechargePhoneDataProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-const setPhoneFormSchema = z
-  .object({
-    phone: z
-      .string({
-        required_error: 'Preencha o número de telefone'
-      })
-      .length(15, { message: 'Preencha o número de telefone corretamente' }),
-    confirmedPhone: z.string({
-      required_error: 'Confirme o número de telefone'
-    })
-  })
-  .refine(data => data.confirmedPhone === data.phone, {
-    message: 'Os telefones precisam ser iguais',
-    path: ['confirmedPhone']
-  });
-
-type setPhoneFormData = z.infer<typeof setPhoneFormSchema>;
-
 export function RechargePhoneData({
   nextStep,
   prevStep
 }: RechargePhoneDataProps) {
-  const methods = useForm<setPhoneFormData>({
-    resolver: zodResolver(setPhoneFormSchema)
+  const {
+    handleSetRechargeFormData,
+    rechargeFormData: { confirmedPhone, phone }
+  } = useRecargaCelular();
+  const methods = useForm<setPhoneFormDataType>({
+    resolver: zodResolver(setPhoneFormSchema),
+    defaultValues: {
+      phone: formatPhoneWithDDD(phone),
+      confirmedPhone: formatPhoneWithDDD(confirmedPhone)
+    }
   });
 
-  function handleSetPhone(data: setPhoneFormData) {
-    console.log(data);
+  function handleSetPhone(data: setPhoneFormDataType) {
+    handleSetRechargeFormData(data);
     nextStep();
   }
 

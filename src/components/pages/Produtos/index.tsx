@@ -2,7 +2,8 @@ import Image from 'next/image';
 import { Row } from 'react-grid-system';
 
 import * as S from './style';
-import { BasicStructure, Heading, Text } from '@components/index';
+import { Heading, Text } from '@components/index';
+import { BasicStructure } from '@components/Layout';
 
 const cards = [
   {

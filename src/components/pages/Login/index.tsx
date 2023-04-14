@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as S from './style';
 import { Button, Input } from '@components/Form';
-import { AuthContext } from 'context/AuthContext';
+import { AuthContext } from 'context';
 
 const loginFormSchema = z.object({
   username: z.string().min(1, {

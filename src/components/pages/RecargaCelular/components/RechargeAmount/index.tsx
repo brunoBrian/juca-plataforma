@@ -1,14 +1,9 @@
 import { Col, Row } from 'react-grid-system';
-import { useState } from 'react';
 
 import * as S from './style';
-import {
-  BasicStructure,
-  Button,
-  Heading,
-  Input,
-  Text
-} from '@components/index';
+import { Button, Heading, Text } from '@components/index';
+import { BasicStructure } from '@components/Layout';
+import { useRecargaCelular } from 'context';
 
 const cards = [
   {
@@ -35,7 +30,10 @@ type RechargeAmountProps = {
 };
 
 export function RechargeAmount({ nextStep, prevStep }: RechargeAmountProps) {
-  const [rechargeAmount, setRechargeAmount] = useState(500);
+  const {
+    handleSetRechargeFormData,
+    rechargeFormData: { amount }
+  } = useRecargaCelular();
 
   return (
     <BasicStructure title="Escolha o valor da recarga" align="center">
@@ -46,8 +44,10 @@ export function RechargeAmount({ nextStep, prevStep }: RechargeAmountProps) {
               {cards.map(card => (
                 <S.Card
                   key={card.text}
-                  active={rechargeAmount === card.value}
-                  onClick={() => setRechargeAmount(card.value)}
+                  active={amount === card.value}
+                  onClick={() =>
+                    handleSetRechargeFormData({ amount: card.value })
+                  }
                 >
                   <Heading weight="bold" tag="h5" variant="h4_bold">
                     {card.text}
