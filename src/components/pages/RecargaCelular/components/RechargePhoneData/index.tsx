@@ -17,7 +17,7 @@ const setPhoneFormSchema = z
       .string({
         required_error: 'Preencha o número de telefone'
       })
-      .min(10, { message: 'Preencha o número de telefone corretamente' }),
+      .length(15, { message: 'Preencha o número de telefone corretamente' }),
     confirmedPhone: z.string({
       required_error: 'Confirme o número de telefone'
     })

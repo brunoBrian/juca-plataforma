@@ -1,6 +1,7 @@
 import { styled } from '@styles/theme';
+import { IMaskInput } from 'react-imask';
 
-export const Input = styled('input', {
+export const Input = styled(IMaskInput, {
   background: 'transparent',
   padding: '15px',
   borderRadius: '$small',
