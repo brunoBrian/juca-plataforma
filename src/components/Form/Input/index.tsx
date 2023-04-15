@@ -1,6 +1,5 @@
-import { InputHTMLAttributes } from 'react';
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { Mask } from 'maska';
 
 import * as S from './style';
 import { Text } from '@components/Typography';
@@ -8,7 +7,7 @@ import { Text } from '@components/Typography';
 type InputProps = {
   name: string;
   label?: string;
-  mask?: Mask;
+  mask?: (value: string) => string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Input({ name, label, mask, ...props }: InputProps) {
@@ -28,9 +27,7 @@ export function Input({ name, label, mask, ...props }: InputProps) {
                 {...field}
                 id={name}
                 onChange={e => {
-                  e.target.value = mask
-                    ? mask.masked(e.target.value)
-                    : e.target.value;
+                  e.target.value = mask ? mask(e.target.value) : e.target.value;
                   field.onChange(e);
                 }}
               />

@@ -11,17 +11,6 @@ export const formatCurrencyPtBr = new Mask({
   }
 });
 
-// export const utilsPhoneWithDDD = () => {
-//   const formatPhoneWithDDD = new Mask({
-//     mask: '(##) #####-####'
-//   });
-
-//   return {
-//     maskPhone: formatPhoneWithDDD.masked,
-//     validatePhone: formatPhoneWithDDD.completed
-//   };
-// };
-
-export const formatPhoneWithDDD = new Mask({
+export const utilsPhoneWithDDD = new Mask({
   mask: '(##) #####-####'
 });

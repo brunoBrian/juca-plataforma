@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { formatPhoneWithDDD } from '@utils/formats';
+import { utilsPhoneWithDDD } from '@utils/formats';
 
 export const setPhoneFormSchema = z
   .object({
@@ -9,7 +9,7 @@ export const setPhoneFormSchema = z
         required_error: 'Preencha o número de telefone'
       })
       .refine(
-        value => formatPhoneWithDDD.completed(value),
+        value => utilsPhoneWithDDD.completed(value),
         'Preencha o número de telefone corretamente'
       )
       .transform(val => val.replace(/[^A-Z0-9]/g, '')),
@@ -18,7 +18,7 @@ export const setPhoneFormSchema = z
         required_error: 'Confirme o número de telefone'
       })
       .refine(
-        value => formatPhoneWithDDD.completed(value),
+        value => utilsPhoneWithDDD.completed(value),
         'Preencha o número de telefone corretamente'
       )
       .transform(val => val.replace(/[^A-Z0-9]/g, ''))

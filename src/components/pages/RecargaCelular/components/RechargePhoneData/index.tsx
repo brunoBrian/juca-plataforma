@@ -7,7 +7,7 @@ import { Button, Input } from '@components/index';
 import { BasicStructure } from '@components/Layout';
 import { setPhoneFormDataType, setPhoneFormSchema } from './zodValidation';
 import { useRecargaCelular } from 'context';
-import { formatPhoneWithDDD } from '@utils/formats';
+import { utilsPhoneWithDDD } from '@utils/formats';
 
 type RechargePhoneDataProps = {
   nextStep: () => void;
@@ -25,8 +25,8 @@ export function RechargePhoneData({
   const methods = useForm<setPhoneFormDataType>({
     resolver: zodResolver(setPhoneFormSchema),
     defaultValues: {
-      phone: formatPhoneWithDDD.masked(phone),
-      confirmedPhone: formatPhoneWithDDD.masked(confirmedPhone)
+      phone: utilsPhoneWithDDD.masked(phone),
+      confirmedPhone: utilsPhoneWithDDD.masked(confirmedPhone)
     }
   });
 
@@ -45,13 +45,13 @@ export function RechargePhoneData({
                 name="phone"
                 label="Insira o número de telefone com DDD"
                 placeholder="00 000000000"
-                mask={formatPhoneWithDDD}
+                mask={val => utilsPhoneWithDDD.masked(val)}
               />
               <Input
                 name="confirmedPhone"
                 label="Confirme o número de telefone com DDD"
                 placeholder="00 000000000"
-                mask={formatPhoneWithDDD}
+                mask={val => utilsPhoneWithDDD.masked(val)}
               />
 
               <S.Buttons>
