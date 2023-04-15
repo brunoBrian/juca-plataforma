@@ -1,18 +1,18 @@
-import { InputHTMLAttributes, useRef } from 'react';
+import { InputHTMLAttributes } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import { Mask } from 'maska';
 
 import * as S from './style';
-import { Controller, useFormContext } from 'react-hook-form';
 import { Text } from '@components/Typography';
 
 type InputProps = {
   name: string;
   label?: string;
-  mask?: string;
+  mask?: Mask;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Input({ name, label, mask, ...props }: InputProps) {
   const { control } = useFormContext();
-  const ref = useRef(null);
 
   return (
     <>
@@ -23,7 +23,17 @@ export function Input({ name, label, mask, ...props }: InputProps) {
           return (
             <S.Wrapper>
               {label && <label htmlFor={name}>{label}</label>}
-              <S.Input {...field} {...props} id={name} mask={mask} ref={ref} />
+              <S.Input
+                {...props}
+                {...field}
+                id={name}
+                onChange={e => {
+                  e.target.value = mask
+                    ? mask.masked(e.target.value)
+                    : e.target.value;
+                  field.onChange(e);
+                }}
+              />
               {fieldState.error && (
                 <Text color="feedback_error" variant="xsmall">
                   {fieldState.error.message}

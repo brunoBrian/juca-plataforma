@@ -25,8 +25,8 @@ export function RechargePhoneData({
   const methods = useForm<setPhoneFormDataType>({
     resolver: zodResolver(setPhoneFormSchema),
     defaultValues: {
-      phone: formatPhoneWithDDD(phone),
-      confirmedPhone: formatPhoneWithDDD(confirmedPhone)
+      phone: formatPhoneWithDDD.masked(phone),
+      confirmedPhone: formatPhoneWithDDD.masked(confirmedPhone)
     }
   });
 
@@ -45,13 +45,13 @@ export function RechargePhoneData({
                 name="phone"
                 label="Insira o número de telefone com DDD"
                 placeholder="00 000000000"
-                mask="(00) 00000-0000"
+                mask={formatPhoneWithDDD}
               />
               <Input
                 name="confirmedPhone"
                 label="Confirme o número de telefone com DDD"
                 placeholder="00 000000000"
-                mask="(00) 00000-0000"
+                mask={formatPhoneWithDDD}
               />
 
               <S.Buttons>
