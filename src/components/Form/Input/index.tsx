@@ -1,5 +1,4 @@
-import { ChangeEvent, InputHTMLAttributes } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { InputHTMLAttributes, forwardRef } from 'react';
 
 import * as S from './style';
 import { Text } from '@components/Typography';
@@ -7,39 +6,30 @@ import { Text } from '@components/Typography';
 type InputProps = {
   name: string;
   label?: string;
+  error?: string;
   mask?: (value: string) => string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export function Input({ name, label, mask, ...props }: InputProps) {
-  const { control } = useFormContext();
-
-  return (
-    <>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field, fieldState }) => {
-          return (
-            <S.Wrapper>
-              {label && <label htmlFor={name}>{label}</label>}
-              <S.Input
-                {...props}
-                {...field}
-                id={name}
-                onChange={e => {
-                  e.target.value = mask ? mask(e.target.value) : e.target.value;
-                  field.onChange(e);
-                }}
-              />
-              {fieldState.error && (
-                <Text color="feedback_error" variant="xsmall">
-                  {fieldState.error.message}
-                </Text>
-              )}
-            </S.Wrapper>
-          );
-        }}
-      />
-    </>
-  );
-}
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ name, label, mask, error, ...rest }, ref) => {
+    return (
+      <S.Wrapper>
+        {label && <label htmlFor={name}>{label}</label>}
+        <S.Input
+          {...rest}
+          ref={ref}
+          name={name}
+          onChange={e => {
+            e.target.value = mask ? mask(e.target.value) : e.target.value;
+            rest.onChange(e);
+          }}
+        />
+        {error && (
+          <Text color="feedback_error" variant="xsmall">
+            {error}
+          </Text>
+        )}
+      </S.Wrapper>
+    );
+  }
+);

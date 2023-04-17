@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useContext } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -23,7 +23,11 @@ type loginFormData = z.infer<typeof loginFormSchema>;
 export function Login() {
   const { signIn, requestStatus } = useContext(AuthContext);
 
-  const methods = useForm<loginFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<loginFormData>({
     resolver: zodResolver(loginFormSchema)
   });
 
@@ -84,31 +88,29 @@ export function Login() {
                   />
                 </Col>
                 <Col md={12} lg={6}>
-                  <FormProvider {...methods}>
-                    <S.Form onSubmit={methods.handleSubmit(handleLogin)}>
-                      <Input
-                        name={'username'}
-                        placeholder="Nome de usuário ou e-mail"
-                        label="Nome de usuário ou e-mail"
-                      />
-                      <Input
-                        name="password"
-                        type="password"
-                        placeholder="sua senha"
-                        label="Senha"
-                      />
+                  <S.Form onSubmit={handleSubmit(handleLogin)}>
+                    <Input
+                      {...register('username')}
+                      placeholder="Nome de usuário ou e-mail"
+                      label="Nome de usuário ou e-mail"
+                      error={errors.username?.message}
+                    />
+                    <Input
+                      {...register('password')}
+                      type="password"
+                      placeholder="sua senha"
+                      label="Senha"
+                      error={errors.password?.message}
+                    />
 
-                      <br />
-                      <Button>
-                        {requestStatus.loading ? 'Carregando' : 'Sign in'}
-                      </Button>
-                      {requestStatus.error && (
-                        <span>{requestStatus.error}</span>
-                      )}
+                    <br />
+                    <Button>
+                      {requestStatus.loading ? 'Carregando' : 'Sign in'}
+                    </Button>
+                    {requestStatus.error && <span>{requestStatus.error}</span>}
 
-                      <a href="#">Esqueci minha senha</a>
-                    </S.Form>
-                  </FormProvider>
+                    <a href="#">Esqueci minha senha</a>
+                  </S.Form>
                 </Col>
               </Row>
             </Col>

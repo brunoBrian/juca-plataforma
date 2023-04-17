@@ -1,5 +1,5 @@
 import { Col, Row } from 'react-grid-system';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as S from './style';
@@ -22,7 +22,11 @@ export function RechargePhoneData({
     handleSetRechargeFormData,
     rechargeFormData: { confirmedPhone, phone }
   } = useRecargaCelular();
-  const methods = useForm<setPhoneFormDataType>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<setPhoneFormDataType>({
     resolver: zodResolver(setPhoneFormSchema),
     defaultValues: {
       phone: utilsPhoneWithDDD.masked(phone),
@@ -39,29 +43,29 @@ export function RechargePhoneData({
     <BasicStructure title="Recarga de celular" isForm>
       <Row>
         <Col sm={12}>
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(handleSetPhone)}>
-              <Input
-                name="phone"
-                label="Insira o número de telefone com DDD"
-                placeholder="00 000000000"
-                mask={val => utilsPhoneWithDDD.masked(val)}
-              />
-              <Input
-                name="confirmedPhone"
-                label="Confirme o número de telefone com DDD"
-                placeholder="00 000000000"
-                mask={val => utilsPhoneWithDDD.masked(val)}
-              />
+          <form onSubmit={handleSubmit(handleSetPhone)}>
+            <Input
+              {...register('phone')}
+              label="Insira o número de telefone com DDD"
+              placeholder="00 000000000"
+              mask={val => utilsPhoneWithDDD.masked(val)}
+              error={errors.phone?.message}
+            />
+            <Input
+              {...register('confirmedPhone')}
+              label="Confirme o número de telefone com DDD"
+              placeholder="00 000000000"
+              mask={val => utilsPhoneWithDDD.masked(val)}
+              error={errors.confirmedPhone?.message}
+            />
 
-              <S.Buttons>
-                <Button variant="basic" onClick={prevStep}>
-                  Voltar
-                </Button>
-                <Button>Próximo passo</Button>
-              </S.Buttons>
-            </form>
-          </FormProvider>
+            <S.Buttons>
+              <Button variant="basic" onClick={prevStep}>
+                Voltar
+              </Button>
+              <Button>Próximo passo</Button>
+            </S.Buttons>
+          </form>
         </Col>
       </Row>
     </BasicStructure>
